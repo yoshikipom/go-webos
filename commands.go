@@ -14,6 +14,9 @@ const (
 	// ApplicationManagerForegroundAppCommand returns information about the forgeground app.
 	ApplicationManagerForegroundAppCommand Command = "ssap://com.webos.applicationManager/getForegroundAppInfo"
 
+	// ApplicationManagerListAppsCommand returns information about the forgeground app.
+	ApplicationManagerListAppsCommand Command = "ssap://com.webos.applicationManager/listApps"
+
 	// AudioGetVolumeCommand returns information about the TV's configured audio output volume.
 	AudioGetVolumeCommand Command = "ssap://audio/getVolume"
 
@@ -109,6 +112,20 @@ func (tv *TV) CurrentApp() (*App, error) {
 	a := &App{}
 	err = mapstructure.Decode(msg.Payload, a)
 	return a, err
+}
+
+// ListApps returns information about the apps.
+func (tv *TV) ListApps() ([]*App, error) {
+	msg, err := tv.Command(ApplicationManagerListAppsCommand, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	resp := struct {
+		Apps []*App `json:"apps"`
+	}{}
+	err = mapstructure.Decode(msg.Payload, &resp)
+	return resp.Apps, err
 }
 
 // GetVolume returns information about the audio output volume.

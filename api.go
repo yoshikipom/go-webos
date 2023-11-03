@@ -35,7 +35,8 @@ type Message struct {
 }
 
 // Validate validates the Message.
-//  Only used for response (type: response || registered) types.
+//
+//	Only used for response (type: response || registered) types.
 func (m Message) Validate() error {
 	switch m.Type {
 	case ErrorMessageType:
@@ -94,6 +95,7 @@ func (p Payload) Validate() error {
 // App represents an applications in the TVs responses.
 type App struct {
 	ReturnValue bool
+	ID          string
 	AppID       string
 	WindowID    string
 	ProcessID   string
