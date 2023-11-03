@@ -244,7 +244,8 @@ func (tv *TV) ChannelDown() error {
 }
 
 // ChannelList returns information about available channels.
-//  @todo implement a ChannelList type. This doesn't work on my TV.
+//
+//	@todo implement a ChannelList type. This doesn't work on my TV.
 func (tv *TV) ChannelList() (Message, error) {
 	return tv.Command(TVChannelListCommand, nil)
 }
@@ -256,64 +257,38 @@ func (tv *TV) ChannelUp() error {
 }
 
 // CurrentChannel returns information about the current channel.
-//  @todo implement a Channel type. This doesn't work on my TV.
+//
+//	@todo implement a Channel type. This doesn't work on my TV.
 func (tv *TV) CurrentChannel() (Message, error) {
 	return tv.Command(TVCurrentChannelCommand, nil)
 }
 
 // CurrentProgram returns information about the current program
 // shown on the CurrentChannel.
-//  @todo implement a Program type. This doesn't work on my TV.
+//
+//	@todo implement a Program type. This doesn't work on my TV.
 func (tv *TV) CurrentProgram() (Message, error) {
 	return tv.Command(TVCurrentChannelProgramCommand, nil)
 }
 
 func (tv *TV) KeyUp() error {
-	if tv.input == nil {
-		var err error
-		tv.input, err = tv.createInput()
-		if err != nil {
-			return err
-		}
-	}
-	tv.input.SendButton("UP")
-	return nil
+	return tv.key("UP")
 }
 
 func (tv *TV) KeyDown() error {
-	if tv.input == nil {
-		var err error
-		tv.input, err = tv.createInput()
-		if err != nil {
-			return err
-		}
-	}
-	tv.input.SendButton("DOWN")
-	return nil
+	return tv.key("DOWN")
 }
 
 func (tv *TV) KeyLeft() error {
-	if tv.input == nil {
-		var err error
-		tv.input, err = tv.createInput()
-		if err != nil {
-			return err
-		}
-	}
-	tv.input.SendButton("LEFT")
-	return nil
+	return tv.key("LEFT")
 }
 
 func (tv *TV) KeyRight() error {
-	if tv.input == nil {
-		var err error
-		tv.input, err = tv.createInput()
-		if err != nil {
-			return err
-		}
-	}
-	tv.input.SendButton("RIGHT")
-	return nil
+	return tv.key("RIGHT")
+}
+
+func (tv *TV) KeyEnter() error {
+	return tv.key("ENTER")
 }
 
 func (tv *TV) KeyOk() (Message, error) {
@@ -321,18 +296,14 @@ func (tv *TV) KeyOk() (Message, error) {
 }
 
 func (tv *TV) KeyBack() error {
-	if tv.input == nil {
-		var err error
-		tv.input, err = tv.createInput()
-		if err != nil {
-			return err
-		}
-	}
-	tv.input.SendButton("BACK")
-	return nil
+	return tv.key("BACK")
 }
 
 func (tv *TV) KeyHome() error {
+	return tv.key("HOME")
+}
+
+func (tv *TV) key(id string) error {
 	if tv.input == nil {
 		var err error
 		tv.input, err = tv.createInput()
@@ -340,6 +311,6 @@ func (tv *TV) KeyHome() error {
 			return err
 		}
 	}
-	tv.input.SendButton("HOME")
+	tv.input.SendButton(id)
 	return nil
 }
