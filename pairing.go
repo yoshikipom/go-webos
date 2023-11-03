@@ -55,13 +55,30 @@ func pairPrompt() Payload {
 				"SEARCH",
 				"WRITE_SETTINGS",
 				"WRITE_NOTIFICATION_ALERT",
-				"CONTROL_POWER",
-				"READ_CURRENT_CHANNEL",
-				"READ_RUNNING_APPS",
 				"READ_UPDATE_INFO",
 				"UPDATE_FROM_REMOTE_APP",
 				"READ_LGE_TV_INPUT_EVENTS",
 				"READ_TV_CURRENT_TIME",
+				"LAUNCH",
+				"LAUNCH_WEBAPP",
+				"APP_TO_APP",
+				"CLOSE",
+				"TEST_OPEN",
+				"TEST_PROTECTED",
+				"CONTROL_AUDIO",
+				"CONTROL_DISPLAY",
+				"CONTROL_INPUT_JOYSTICK",
+				"CONTROL_INPUT_MEDIA_RECORDING",
+				"CONTROL_INPUT_MEDIA_PLAYBACK",
+				"CONTROL_INPUT_TV",
+				"CONTROL_POWER",
+				"READ_APP_STATUS",
+				"READ_INPUT_DEVICE_LIST",
+				"READ_NETWORK_STATE",
+				"READ_TV_CHANNEL_LIST",
+				"WRITE_NOTIFICATION_TOAST",
+				"READ_POWER_STATE",
+				"READ_COUNTRY_INFO",
 			},
 			"signatures": []map[string]interface{}{
 				{
@@ -75,7 +92,8 @@ func pairPrompt() Payload {
 
 // pairPIN returns a Payload necessary to pair with the TV using
 // the PIN method.
-//  @todo implement PIN pairing.
+//
+//	@todo implement PIN pairing.
 func pairPIN() Payload {
 	panic("not implemented")
 }
