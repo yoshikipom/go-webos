@@ -53,7 +53,7 @@ func sleepBeforeLoginClick(currentAppIsYoutube bool) {
 }
 
 func main() {
-	if len(os.Args) != 4 {
+	if len(os.Args) < 4 {
 		log.Fatalln("args are invalid. example) ./auth 192.168.1.2 abcde(client-id) https://www.youtube.com/watch?v=something")
 	}
 	ipAddress := os.Args[1]

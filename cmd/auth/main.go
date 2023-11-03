@@ -44,7 +44,7 @@ func fetchClientKey(ip string) {
 }
 
 func main() {
-	if len(os.Args) != 2 {
+	if len(os.Args) < 2 {
 		log.Fatalln("args are invalid. example) ./auth 192.168.1.2")
 	}
 	ip := os.Args[1]
