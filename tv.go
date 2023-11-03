@@ -80,6 +80,7 @@ func (tv *TV) MessageHandler() (err error) {
 
 		msg := Message{}
 
+		// fmt.Printf("%+v\n", string(p)) // print response json
 		err = json.Unmarshal(p, &msg)
 		if err != nil {
 			continue

@@ -15,7 +15,6 @@ import (
 
 const (
 	youtubeAppID = "youtube.leanback.v4"
-	youtubeUrl   = "https://www.youtube.com/watch?v=79XaA_4CYj8"
 )
 
 var dialer = websocket.Dialer{
@@ -54,11 +53,12 @@ func sleepBeforeLoginClick(currentAppIsYoutube bool) {
 }
 
 func main() {
-	if len(os.Args) != 3 {
-		log.Fatalln("args are invalid. example) ./auth 192.168.1.2 abcde(client-id)")
+	if len(os.Args) != 4 {
+		log.Fatalln("args are invalid. example) ./auth 192.168.1.2 abcde(client-id) https://www.youtube.com/watch?v=something")
 	}
 	ipAddress := os.Args[1]
 	clientId := os.Args[2]
+	videoURL := os.Args[3]
 	fmt.Printf("%+v\n", clientId)
 
 	tv := connectToTV(ipAddress, clientId)
@@ -74,7 +74,7 @@ func main() {
 		tv.OpenApp("youtube.leanback.v4")
 	}
 
-	_, err = tv.Command(webos.SystemLauncherLaunchCommand, webos.Payload{"id": youtubeAppID, "params": map[string]interface{}{"contentTarget": youtubeUrl}})
+	_, err = tv.Command(webos.SystemLauncherLaunchCommand, webos.Payload{"id": youtubeAppID, "params": map[string]interface{}{"contentTarget": videoURL}})
 	if err != nil {
 		fmt.Printf("Error: %+v\n", err)
 	}
