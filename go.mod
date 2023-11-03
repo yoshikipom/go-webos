@@ -1,4 +1,4 @@
-module github.com/kaperys/go-webos
+module github.com/yoshikipom/go-webos
 
 require (
 	github.com/gorilla/websocket v1.2.0
