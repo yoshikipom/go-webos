@@ -71,7 +71,7 @@ func main() {
 	currentAppIsYoutube := a.AppID == youtubeAppID
 
 	if !currentAppIsYoutube {
-		tv.OpenApp("youtube.leanback.v4")
+		tv.OpenApp(youtubeAppID)
 	}
 
 	_, err = tv.Command(webos.SystemLauncherLaunchCommand, webos.Payload{"id": youtubeAppID, "params": map[string]interface{}{"contentTarget": videoURL}})
