@@ -59,7 +59,6 @@ func main() {
 	ipAddress := os.Args[1]
 	clientId := os.Args[2]
 	videoURL := os.Args[3]
-	fmt.Printf("%+v\n", clientId)
 
 	tv := connectToTV(ipAddress, clientId)
 	defer tv.Close()
